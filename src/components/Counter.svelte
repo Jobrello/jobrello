@@ -1,13 +1,18 @@
-<script>
-  let count = 0;
+<script lang="ts">
+  let count = 0
 
-  function add() {
-    count += 1;
+  type Test = {
+    id: string
   }
 
-  function subtract() {
-    count -= 1;
+  let t: Test = {
+    id: "123"
   }
+  console.log(t)
+
+  const add = () => count += 1
+  const subtract = () => count -= 1
+
 </script>
 
 <div class="counter">

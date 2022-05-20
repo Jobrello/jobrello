@@ -836,7 +836,8 @@ const css = {
 
 const Counter = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 	let count = 0;
-
+	let t = { id: "123" };
+	console.log(t);
 	$$result.css.add(css);
 
 	return `<div class="${"counter svelte-1b0tiw4"}"><button>-</button>
@@ -859,16 +860,17 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const STYLES = [];
   for (const STYLE of STYLES)
     $$result.styles.add(STYLE);
-  return render`<html lang="en" class="astro-TZE3LZMP">
+  return render`<html lang="en" class="astro-TBKM6WDW">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
+		<title>Jobrella</title>
 		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 		
 	<!--astro:head--></head>
 	<body>
-		<main class="astro-TZE3LZMP">
-			${renderComponent($$result, "Counter", Counter, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": $$metadata.getPath(Counter), "client:component-export": $$metadata.getExport(Counter), "class": "astro-TZE3LZMP" }, { "default": () => render`<h1 class="astro-TZE3LZMP">Hello, Svelte!</h1>` })}
+		<main class="astro-TBKM6WDW">
+			${renderComponent($$result, "Counter", Counter, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": $$metadata.getPath(Counter), "client:component-export": $$metadata.getExport(Counter), "class": "astro-TBKM6WDW" }, { "default": () => render`<h1 class="astro-TBKM6WDW">Hello, Svelte!</h1>` })}
 		</main>
 	</body></html>`;
 });
@@ -4105,7 +4107,7 @@ new RegExp(`\\.(${Array.from(STYLE_EXTENSIONS).map((s) => s.slice(1)).join("|")}
 const SCRIPT_EXTENSIONS = /* @__PURE__ */ new Set([".js", ".ts"]);
 new RegExp(`\\.(${Array.from(SCRIPT_EXTENSIONS).map((s) => s.slice(1)).join("|")})($|\\?)`);
 
-const _manifest = Object.assign(deserializeManifest({"routes":[{"file":"","links":["assets/asset.a7d59221.css"],"scripts":[],"routeData":{"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/","_meta":{"trailingSlash":"ignore"}}}],"markdown":{"mode":"mdx","drafts":false,"syntaxHighlight":"shiki","shikiConfig":{"langs":[],"theme":"github-dark","wrap":false},"remarkPlugins":[],"rehypePlugins":[]},"pageMap":null,"renderers":[],"entryModules":{"/@fs/home/marcin/jobrella/src/components/Counter.svelte":"entry.906c0960.js","astro/client/visible.js":"entry.9125fc96.js","@astrojs/svelte/client.js":"entry.fec19fd6.js","\u0000@astrojs-ssr-virtual-entry":"entry.mjs","astro:scripts/before-hydration.js":"data:text/javascript;charset=utf-8,//[no before-hydration script]"},"assets":["/entry.906c0960.js","/entry.9125fc96.js","/entry.fec19fd6.js","/favicon.ico","/assets/asset.c55e5ced.css","/chunks/chunk.50365100.js","/assets/asset.a7d59221.css"]}), {
+const _manifest = Object.assign(deserializeManifest({"routes":[{"file":"","links":["assets/asset.a7d59221.css"],"scripts":[],"routeData":{"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/","_meta":{"trailingSlash":"ignore"}}}],"markdown":{"mode":"mdx","drafts":false,"syntaxHighlight":"shiki","shikiConfig":{"langs":[],"theme":"github-dark","wrap":false},"remarkPlugins":[],"rehypePlugins":[]},"pageMap":null,"renderers":[],"entryModules":{"/@fs/home/marcin/jobrella/src/components/Counter.svelte":"entry.9a9a168e.js","astro/client/visible.js":"entry.9125fc96.js","@astrojs/svelte/client.js":"entry.fec19fd6.js","\u0000@astrojs-ssr-virtual-entry":"entry.mjs","astro:scripts/before-hydration.js":"data:text/javascript;charset=utf-8,//[no before-hydration script]"},"assets":["/entry.9125fc96.js","/entry.9a9a168e.js","/entry.fec19fd6.js","/favicon.ico","/assets/asset.c55e5ced.css","/chunks/chunk.50365100.js","/assets/asset.a7d59221.css"]}), {
 	pageMap: pageMap,
 	renderers: renderers
 });
