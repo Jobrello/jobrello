@@ -4,7 +4,11 @@ import netlify from '@astrojs/netlify/functions';
 
 // https://astro.build/config
 export default defineConfig({
-	// Enable Svelte to support Svelte components.
+	vite: {
+		ssr: {
+			external: ["svgo"],
+		},
+	},
 	integrations: [svelte()],
 	adapter: netlify()
 });

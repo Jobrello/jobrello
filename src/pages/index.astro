@@ -1,6 +1,7 @@
 ---
 // Component Imports
 import Counter from '../components/Counter.svelte';
+import { Icon } from 'astro-icon';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -14,9 +15,13 @@ import Counter from '../components/Counter.svelte';
 		<title>Jobrella</title>
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<style>
+			@font-face {
+				font-family: ubuntuCondensed;
+				src: url(/UbuntuCondensed.woff);
+			}
 			html,
 			body {
-				font-family: system-ui;
+				font-family: ubuntuCondensed;
 				margin: 0;
 			}
 			body {
@@ -26,6 +31,17 @@ import Counter from '../components/Counter.svelte';
 	</head>
 	<body>
 		<main>
+			<Icon name="jobrella" style="width:100%; height:90vh"/>
+			<section style="font-size: 3rem; margin-top:10rem; margin-left:auto; margin-right:auto;">
+				<h1>HOW IT WORKS?</h1>
+				<p>We know how and where software engineers look for jobs.</p>
+				<ol>
+					<li>Write Job Description - pdf is perfect.</li>
+					<li>Pick Employment Country (for now we support Poland)</li>
+					<li>Choose the range that you are satisfied with</li>
+					<li>Wait for CVs from candidates</li>
+				</ol>
+			</section>
 			<Counter client:visible>
 				<h1>Hello, Svelte!</h1>
 			</Counter>
