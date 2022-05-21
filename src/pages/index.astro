@@ -1,6 +1,7 @@
 ---
 // Component Imports
 import Counter from '../components/Counter.svelte';
+import Slider from '../components/Slider.svelte';
 import { Icon } from 'astro-icon';
 
 // Full Astro Component Syntax:
@@ -42,12 +43,13 @@ import { Icon } from 'astro-icon';
 						<li>Choose the range that you are satisfied with</li>
 						<li>We will post Your job offer in max 24h in different portals</li>
 						<li>Wait for CVs from candidates</li>
-					</ol>
+					</ol> 
 				</span>
 			</div>
 			<Counter client:visible>
 				<h1>Hello, Svelte!</h1>
 			</Counter>
+			<Slider client:visible></Slider>
 		</main>
 	</body>
 </html>
