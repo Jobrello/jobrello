@@ -31,17 +31,20 @@ import { Icon } from 'astro-icon';
 	</head>
 	<body>
 		<main>
-			<Icon name="jobrella" style="width:100%; height:90vh"/>
-			<section style="font-size: 3rem; margin-top:10rem; margin-left:auto; margin-right:auto;">
-				<h1>HOW IT WORKS?</h1>
-				<p>We know how and where software engineers look for jobs.</p>
-				<ol>
-					<li>Write Job Description - pdf is perfect.</li>
-					<li>Pick Employment Country (for now we support Poland)</li>
-					<li>Choose the range that you are satisfied with</li>
-					<li>Wait for CVs from candidates</li>
-				</ol>
-			</section>
+			<Icon name="jobrella" style="width:100%; max-height:90vh"/>
+			<div style="text-align: center;">
+				<span style="font-size: 2.5rem; margin-top:4rem; text-align: left; display:inline-block;">
+					<h1>HOW IT WORKS?</h1>
+					<p style="font-size: 0.8em">We know how and where software engineers look for jobs.</p>
+					<ol>
+						<li>Write Job Description - pdf is perfect</li>
+						<li>Pick Employment Country (for now we support Poland)</li>
+						<li>Choose the range that you are satisfied with</li>
+						<li>We will post Your job offer in max 24h in different portals</li>
+						<li>Wait for CVs from candidates</li>
+					</ol>
+				</span>
+			</div>
 			<Counter client:visible>
 				<h1>Hello, Svelte!</h1>
 			</Counter>
