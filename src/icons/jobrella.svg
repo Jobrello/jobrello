@@ -29,7 +29,7 @@
      inkscape:cx="7.7060589"
      inkscape:cy="102.31027"
      inkscape:document-units="mm"
-     inkscape:current-layer="g3874"
+     inkscape:current-layer="text64"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -90,17 +90,15 @@
          id="g3847" />
       <g
          id="g3849" />
-      <text
-         id="text64"
-         y="236.54185"
-         x="61.995934"
+      <g
+         aria-label="J"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:209.96925354px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.06941962"
-         xml:space="preserve"><tspan
+         id="text64">
+        <path
+           d="m 128.34622,197.90751 q 0,9.65859 -2.09969,17.42745 -1.88973,7.55889 -6.29908,13.01809 -4.19939,5.4592 -11.33834,8.39877 -6.92899,2.93957 -17.007512,2.93957 -7.978831,0 -15.327755,-2.51963 -7.348924,-2.30966 -13.228063,-6.71901 l 6.299077,-14.90782 q 3.569478,2.7296 9.448617,5.24923 6.089108,2.30966 11.758278,2.30966 4.409354,0 7.768862,-1.04984 3.569476,-1.04985 6.089106,-3.77945 2.51963,-2.93957 3.77945,-7.76886 1.25981,-5.03926 1.25981,-12.59816 V 91.033162 h 18.89724 z"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';fill:#000000;stroke-width:2.06941962"
-           y="236.54185"
-           x="61.995934"
-           id="tspan62"
-           sodipodi:role="line">J</tspan></text>
+           id="path845" />
+      </g>
       <path
          inkscape:connector-curvature="0"
          id="path130"
