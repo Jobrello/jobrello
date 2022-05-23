@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="-82.450055"
-     inkscape:cy="100.28996"
+     inkscape:cx="144.86093"
+     inkscape:cy="98.011774"
      inkscape:document-units="mm"
      inkscape:current-layer="text64"
      showgrid="false"
@@ -39,7 +39,15 @@
      inkscape:window-height="1043"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="-13.229842,68.287366"
+       orientation="1,0"
+       id="guide74"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
   <metadata
      id="metadata240">
     <rdf:RDF>
@@ -95,10 +103,11 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:209.96925354px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.06941962"
          id="text64">
         <path
-           d="m 130.2969,197.90751 q 0,9.65859 -2.09969,17.42745 -1.88973,7.55889 -6.29908,13.01809 -4.19939,5.4592 -11.33834,8.39877 -6.92899,2.93957 -17.007514,2.93957 -7.978831,0 -15.327755,-2.51963 -7.348924,-2.30966 -13.228063,-6.71901 l 6.299077,-14.90782 q 3.569478,2.7296 9.448617,5.24923 6.089108,2.30966 11.758278,2.30966 4.409354,0 7.76886,-1.04984 3.56948,-1.04985 6.08911,-3.77945 2.51963,-2.93957 3.77945,-7.76886 1.25981,-5.03926 1.25981,-12.59816 V 91.033162 h 18.89724 z"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';fill:#000000;stroke-width:2.06941962"
+           d="m 128.34622,197.90751 c 0,6.43906 -0.4887,12.24821 -1.4661,17.42745 -0.87966,5.03926 -2.34576,9.37862 -4.39829,13.01809 -1.95479,3.63947 -4.59377,6.43906 -7.91692,8.39877 -3.22541,1.95971 -7.18388,2.93957 -11.87539,2.93957 -3.714108,0 -7.281612,-0.83988 -10.702505,-2.51963 -17.065976,-10.4588 -9.673249,-23.6881 1.759316,-16.3776 0.416962,0.43474 1.369387,0.83259 1.809623,1.19388 5.727186,4.70012 12.677686,3.21311 16.076756,-3.71351 1.17288,-1.95971 2.05254,-4.54933 2.63898,-7.76886 0.58643,-3.35951 0.87965,-7.55889 0.87965,-12.59816 V 91.033162 h 13.19488 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';fill:#000000;stroke-width:1.72922719"
            id="path845"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="scccsccsccsccs" />
       </g>
       <path
          inkscape:connector-curvature="0"
