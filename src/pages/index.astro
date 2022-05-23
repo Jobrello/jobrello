@@ -1,100 +1,121 @@
 ---
-// Component Imports
-import Counter from '../components/Counter.svelte';
-import Slider from '../components/Slider.svelte';
-import { Icon } from 'astro-icon';
+	// Component Imports
+	import Counter from '../components/Counter.svelte';
+	import Slider from '../components/Slider.svelte';
+	import { Icon } from 'astro-icon';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="Find software engineers effectively!">
-		<title>Jobrella</title>
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<style>
-			@font-face {
-				font-family: ubuntuCondensed;
-				src: url(/UbuntuCondensed.woff);
-			}
-			:root {
-				--jobrella-accent-color: #800000;
-			}
-			html,
-			body {
-				font-family: ubuntuCondensed;
-				margin: 0;
-			}
-			body {
-				background-color: #ececec;
-			}
-			main {
-				margin: 1em;
-			}
-			ol li::marker {
-    			color: var(--jobrella-accent-color);
-			}
-			footer {
-				background-color: black;
-				padding-top:2rem;
-				padding-bottom:2rem;
-				color:white;
-				text-align: center;
-			}
 
-			footer a {
-				color: white;
-			}
-		
-			.footer-column {
-				text-align: left;
-				min-width: 140px;
-				padding: 1em;
-				display: inline-block;
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<Icon name="jobrella" style="width:100%; max-height:90vh"/>
-			<div style="text-align: center;">
-				<span style="font-size: 2.2rem; margin-top:4rem; text-align: left; display:inline-block;">
-					<h1>HOW IT WORKS<span style="color:var(--jobrella-accent-color);"> ?</span></h1>
-					<p style="font-size: 0.8em">We know how and where software engineers look for jobs.</p>
-					<ol>
-						<li>Write Job Description - pdf is perfect</li>
-						<li>Pick Employment Country (for now we support Poland)*</li>
-						<li>Choose the range that you are satisfied with</li>
-						<li>We post your job offer to different places within 24h</li>
-						<li>We let You know it is done</li>
-						<li>Wait for CVs from candidates</li>
-					</ol> 
-					<p style="font-size: 0.8em">*We are buidling connections to provide trustworthy services in<br/>Netherlands, Great Britain, Czech Republic, and more to come.</p>
-				</span>
-			</div>
-			<Counter client:visible>
-				<h1>Hello!</h1>
-			</Counter>
-			<Slider min={0} max={10} value={1} client:visible></Slider>
-		</main>
-		<footer>
-		<div>
-		<Icon name="jobrella-light" style="width:3rem;"/>	
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content="Find software engineers effectively!">
+	<title>Jobrella</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<style>
+		@font-face {
+			font-family: ubuntuCondensed;
+			src: url(/UbuntuCondensed.woff);
+		}
+
+		:root {
+			--jobrella-accent-color: #800000;
+		}
+
+		html,
+		body {
+			font-family: ubuntuCondensed;
+			margin: 0;
+		}
+
+		body {
+			background-color: #ececec;
+		}
+
+		main {
+			margin: 1em;
+		}
+
+		ol li::marker {
+			color: var(--jobrella-accent-color);
+		}
+
+		footer {
+			background-color: black;
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+			color: white;
+			text-align: center;
+		}
+
+		footer a {
+			color: white;
+		}
+
+		.footer-column {
+			text-align: left;
+			min-width: 140px;
+			padding: 1em;
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<Icon name="jobrella" style="width:100%; max-height:90vh" />
+		<div style="text-align: center;">
+			<span style="font-size: 2.2rem; margin-top:4rem; text-align: left; display:inline-block;">
+				<h1>HOW IT WORKS<span style="color:var(--jobrella-accent-color);"> ?</span></h1>
+				<p style="font-size: 0.8em">We know how and where software engineers look for jobs.</p>
+				<ol>
+					<li>Write Job Description - pdf is perfect</li>
+					<li>Pick Employment Country (for now we support Poland)*</li>
+					<li>Choose the range that you are satisfied with</li>
+					<li>We post your job offer to different places within 24h</li>
+					<li>We let You know it is done</li>
+					<li>Wait for CVs from candidates</li>
+				</ol>
+				<p style="font-size: 0.8em">*We are buidling connections to provide trustworthy services
+					in<br />Netherlands, Great Britain, Czech Republic, and more to come.</p>
+			</span>
 		</div>
-			<div class="footer-column">
-				<div>Contact: </div>
-				<div>+48 123 433</div>
-				<div>jobrella@jobrella.pl</div>
+		<Counter client:visible>
+			<h1>Hello!</h1>
+		</Counter>
+		<Slider min={0} max={10} value={1} client:visible></Slider>
+	</main>
+	<footer>
+		<div>
+			<Icon name="jobrella-light" style="width:3rem;" />
+		</div>
+		<div class="footer-column">
+			<div>Contact: </div>
+			<div>+48 123 433</div>
+			<div>jobrella@jobrella.pl</div>
+		</div>
+		<div class="footer-column">
+			<div>Read: </div>
+			<div>
+				<a title="Terms & Conditions" 
+				   target="_blank" 
+				   href="/terms.pdf" 
+				   rel="noopener noreferrer">Terms & Conditions</a>
 			</div>
-			<div class="footer-column">
-				<div>Read: </div>
-				<div><a title="Terms & Conditions" target="_blank" href="/terms.pdf" rel="noopener noreferrer">Terms & Conditions</a></div>
-				<div><a title="Privacy Notice" target="_blank" href="/privacy.pdf" rel="noopener noreferrer">Privacy Notice</a></div>
+			<div>
+				<a title="Privacy Notice" 
+				   target="_blank" 
+				   href="/privacy.pdf" 
+				   rel="noopener noreferrer">Privacy Notice
+				</a>
 			</div>
-			<div style="padding-top:1rem;">Jobrella ® 2022</div>
+		</div>
+		<div style="padding-top:1rem;">Jobrella ® 2022</div>
 	</footer>
-	</body>
+</body>
+
 </html>
