@@ -8,8 +8,6 @@
   let t: Test = {
     id: "123"
   }
-  console.log(t)
-
   const add = () => count += 1
   const subtract = () => count -= 1
 
