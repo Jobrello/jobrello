@@ -1,5 +1,6 @@
 <script lang="ts">
   export let dropFileTitle = "Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
+  export let style = ""
 
   let isOver = false
   let fileInput: HTMLInputElement
@@ -63,24 +64,26 @@ input[type=file]::file-selector-button:hover {
   border: 2px solid #00cec9;
 }
 </style>
-<input
-    style="display: none;"
-    type="file" 
-    bind:this={fileInput}
-    on:change={onInputChanged}
-    label="Upload file"
-    data-testId='file-uploader'
-    id="offerFile">
-<label class="dropzone" 
-       on:dragover={onOver} 
-       on:dragleave={() => isOver = false}
-       on:drop={handleDrop} 
-       class:isOver 
-       for="offerFile">
-       {#if !selectedFile}
-          {dropFileTitle}
-       {/if}
-       {#if selectedFile}
-          <div>{selectedFile.name} ✅</div>
-       {/if}
-</label>
+<div style={style}>
+  <input
+      style="display: none;"
+      type="file" 
+      bind:this={fileInput}
+      on:change={onInputChanged}
+      label="Upload file"
+      data-testId='file-uploader'
+      id="offerFile">
+  <label class="dropzone" 
+        on:dragover={onOver} 
+        on:dragleave={() => isOver = false}
+        on:drop={handleDrop} 
+        class:isOver 
+        for="offerFile">
+        {#if !selectedFile}
+            {dropFileTitle}
+        {/if}
+        {#if selectedFile}
+            <div style="font-size: 2rem;">{selectedFile.name} ✅</div>
+        {/if}
+  </label>
+</div>
