@@ -7,13 +7,15 @@ describe('Upload component', () => {
     const testFile = new File(['(⌐□_□)'], 'chucknorris.png', {
       type: 'image/png'
     })
-    const dropFileName = 'Drop job offer here'
-    const cut = render(Upload, {dropFileName: 'Drop job offer here'})
+    const dropFileTitle = 'Drop job offer here'
+    const cut = render(Upload, {dropFileTitle})
+    const uploader = cut.getByTestId('file-uploader') as HTMLInputElement
     // Act
-    fireEvent.drop(cut.getByLabelText(dropFileName), {
-      dataTransfer: {files: [testFile]}
-    })
+    await fireEvent.change(uploader, {target: {files: [testFile]}})
     // Assert
-    expect(await cut.findByText(testFile.name)).toBeInTheDocument()
+    const files = uploader.files as FileList
+    expect(await cut.findByText(/chucknorris.png/)).toBeInTheDocument()
+    expect(files.length).toEqual(1)
+    expect(files[0].name).toBe(testFile.name)
   })
 })
