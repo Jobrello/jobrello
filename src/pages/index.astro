@@ -1,6 +1,6 @@
 ---
 	// Component Imports
-	import Counter from '../components/Counter.svelte';
+	import Upload from '../components/Upload.svelte';
 	import Slider from '../components/Slider.svelte';
 	import { Icon } from 'astro-icon';
 
@@ -84,9 +84,7 @@
 					in<br />Netherlands, Great Britain, Czech Republic, and more to come.</p>
 			</span>
 		</div>
-		<Counter client:visible>
-			<h1>Hello!</h1>
-		</Counter>
+		<Upload client:load></Upload>
 		<Slider min={0} max={10} value={1} client:visible></Slider>
 	</main>
 	<footer>
