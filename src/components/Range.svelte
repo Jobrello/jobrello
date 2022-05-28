@@ -45,6 +45,7 @@
       bind:value={value}
       on:input={() => dispatch('change', value)}
       type="range" 
+      data-testId="slider"
       min={min} 
       max={max} 
       class="slider">
