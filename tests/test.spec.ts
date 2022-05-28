@@ -31,7 +31,7 @@ describe('Informative range component', () => {
     ]
     const cut = render(InfromativeRange, { steps })
     // Act
-    fireEvent.change(cut.getByTestId('slider'), {target: {value : 2}})
+    fireEvent.input(cut.getByTestId('slider'), {target: {value : 2}})
     // Assert
     expect(await cut.findByText(steps[2]))
   })
