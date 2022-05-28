@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom'
 import Upload from '../src/components/Upload.svelte'
+import InfromativeRange from '../src/components/InfromativeRange.svelte'
 import {render, fireEvent} from '@testing-library/svelte'
 
 describe('Upload component', () => {
@@ -17,5 +18,21 @@ describe('Upload component', () => {
     expect(await cut.findByText(/chucknorris.png/)).toBeInTheDocument()
     expect(files.length).toEqual(1)
     expect(files[0].name).toBe(testFile.name)
+  })
+})
+
+describe('Informative range component', () => {
+  it('When value is changed, the related information is being displayed', async () => {
+    // Arrange
+    const steps = [
+      '1st step'
+      , '2nd step'
+      , '3rd step'
+    ]
+    const cut = render(InfromativeRange, { steps })
+    // Act
+    fireEvent.change(cut.getByTestId('slider'), {target: {value : 2}})
+    // Assert
+    expect(await cut.findByText(steps[2]))
   })
 })

@@ -39,6 +39,7 @@
     text-align:center;
     background-color: white;
     padding: 1rem;
+    transition: .3s;
   }
 
   .isOver {
@@ -46,24 +47,8 @@
     color:white;
   }
   
-  input[type='file'] {
-    color: rgba(0, 0, 0, 0)
-  }
-
-  input[type=file]::file-selector-button {
-    padding: .2em .4em;
-    border-radius: .2em;
-    background-color: #a29bfe;
-    outline: none;
-    border: none;
-    transition: 1s;
-}
-
-input[type=file]::file-selector-button:hover {
-  background-color: #81ecec;
-  border: 2px solid #00cec9;
-}
 </style>
+
 <div style={style}>
   <input
       style="display: none;"

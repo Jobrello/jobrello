@@ -1,4 +1,8 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte"
+
+    const dispatch = createEventDispatcher()
+
     export let value: number = 1
     export let min: number = 0
     export let max: number = 5
@@ -9,13 +13,9 @@
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 15px;
   border-radius: 5px;  
-  background: #d3d3d3;
+  background: rgb(205, 205, 205);
   outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
 }
 
 .slider::-webkit-slider-thumb {
@@ -24,7 +24,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: #04AA6D;
+  background: white;
   cursor: pointer;
 }
 
@@ -32,11 +32,20 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #04AA6D;
+  appearance: none;
+  outline: none;
+  border: 8px solid rgb(135, 133, 133);
+  background: white;
   cursor: pointer;
 }
 </style>
 
 <div class="slidecontainer">
-    <input bind:value={value} type="range" min={min} max={max} class="slider">
+    <input 
+      bind:value={value}
+      on:input={() => dispatch('change', value)}
+      type="range" 
+      min={min} 
+      max={max} 
+      class="slider">
 </div>
