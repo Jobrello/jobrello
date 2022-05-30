@@ -1,8 +1,9 @@
 ---
 	// Component Imports
-	import Upload from '../components/Upload.svelte'
-	import InfromativeRange from '../components/InfromativeRange.svelte'
+	import Upload from '../components/OrderForm/Upload.svelte'
+	import InfromativeRange from '../components/OrderForm/InfromativeRange.svelte'
 	import { Icon } from 'astro-icon'
+	import OrderForm from '../components/OrderForm/Index.svelte'
 
 	const steps = [
 		'1 most popular job board in Poland, Facebook group, posters on Polish University of technology.'
@@ -90,17 +91,7 @@
 			</span>
 		</div>
 		<h1 style="text-align: center;">Let's do it!</h1>
-		<div style="font-size: 1.5rem;max-width: 450px;margin:auto;">
-			<Upload 
-				dropFileTitle = "Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
-				style = "max-width:450px;margin:auto"
-				client:load>
-			</Upload>
-			<h2>Select Job Offer Range</h2>
-			<InfromativeRange steps={steps} client:visible></InfromativeRange>
-		</div>
-		<Icon name="poland" style="max-width: 500px; display:block; margin:auto; fill:black;" />
-		<button style="display:block; text-align: center; margin:auto;">Coming soon</button>
+		<OrderForm client:load/>
 	</main>
 	<footer>
 		<div>

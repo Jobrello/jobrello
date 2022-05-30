@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
-import Upload from '../src/components/Upload.svelte'
-import InfromativeRange from '../src/components/InfromativeRange.svelte'
+import Upload from '../src/components/OrderForm/Upload.svelte'
+import InfromativeRange from '../src/components/OrderForm/InfromativeRange.svelte'
 import {render, fireEvent} from '@testing-library/svelte'
 
 describe('Upload component', () => {
