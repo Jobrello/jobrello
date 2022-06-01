@@ -1,5 +1,6 @@
 <script lang="ts">
-import Range from "./Range.svelte"
+    import Range from "./Range.svelte"
+    
     export let steps: string[]
     let currentStep = 0
 </script>

@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom'
 import Upload from '../src/components/OrderForm/Upload.svelte'
+import { Option } from '../src/components/OrderForm/models'
 import InfromativeRange from '../src/components/OrderForm/InfromativeRange.svelte'
 import OfferForm from '../src/components/OrderForm/Index.svelte'
+import CustomizedOrder from '../src/components/OrderForm/CustomizedOrder.svelte'
 import {render, fireEvent} from '@testing-library/svelte'
 
 describe('Upload component', () => {
@@ -45,9 +47,24 @@ describe('Order form component', () => {
     // Act
     await fireEvent.click(cut.getByText('customize'))
     // Assert
-    expect(cut.getByText('Number of bumps in job boards'))
-    expect(cut.getByText('Number of job boards'))
-    expect(cut.getByText('Social media, forums'))
-    expect(cut.getByText('Hunting on Linkedin'))
+    expect(cut.getByText('back to classic mode'))
+  })
+})
+
+describe('CustomizedOrder', () => {
+  const customOptions: Option[] = [
+    ['Job boards range', ['None', '1 job board', '2 job boards', '3 job boards']],
+    ['Social media & forums', ['None', '1 facebook group', '2 facebook groups, 1 slack community']],
+    ['Head hunter', false]
+  ]
+
+  it('can set ranges and checkboxes in customization area', async () => {
+    // Arrange + Act
+    const cut = render(CustomizedOrder, { options: customOptions })
+    // Assert
+    const text = cut.container.textContent
+    customOptions.forEach(([name, _]) => {
+      expect(text).toContain(name)
+    })
   })
 })
