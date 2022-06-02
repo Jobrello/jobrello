@@ -14,7 +14,7 @@
     }
 </style>
 
-<ul style="text-align: left;">
+<ul style="text-align: left; padding-left:0;">
     {#each options as [name, choices], index} 
     <li style="display: flex; justify-content: space-between; padding: .5rem;">
         {#if Array.isArray(choices)}
@@ -25,7 +25,7 @@
                                                 : selections[index]
                                                 }</small></div>
             </div>
-            <div class="range">
+            <div class="range" style="margin-top: .5rem">
                 <Range 
                     min={0} 
                     max={choices.length-1}
