@@ -1,5 +1,6 @@
 <script lang="ts">
     import {Option} from "./models"
+    import Checkbox from "../Checkbox.svelte"
     import Range from "./Range.svelte"
 
     export let options: Option[]
@@ -34,7 +35,9 @@
                 </Range>
             </div>
         {:else if typeof choices == "boolean"}
-            <label><input type="checkbox">{name}</label>
+            <div style="margin-right:124px;width:100%">
+                <Checkbox bind:checked={choices}>{name}</Checkbox>
+            </div>
         {/if}
     </li>
     {/each}

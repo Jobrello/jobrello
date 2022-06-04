@@ -3,6 +3,7 @@ import Upload from '../src/components/OrderForm/Upload.svelte'
 import { Option } from '../src/components/OrderForm/models'
 import InfromativeRange from '../src/components/OrderForm/InfromativeRange.svelte'
 import OfferForm from '../src/components/OrderForm/Index.svelte'
+import Checkbox from '../src/components/Checkbox.svelte'
 import CustomizedOrder from '../src/components/OrderForm/CustomizedOrder.svelte'
 import {render, fireEvent} from '@testing-library/svelte'
 
@@ -48,6 +49,27 @@ describe('Order form component', () => {
     await fireEvent.click(cut.getByText('customize'))
     // Assert
     expect(cut.getByText('back to classic mode'))
+  })
+})
+
+describe('Checkbox', () => {
+  it('has default value', () => {
+    // Arrange + Act
+    const cut = render(Checkbox, { checked: true })
+    // Assert
+    const checkbox = cut.getByRole("checkbox") as HTMLInputElement
+    expect(checkbox.checked).toBe(true)
+  })
+
+  it('fires change event with checked value', async () => {
+    // Arrange
+    let actualEvent: any = null
+    const cut = render(Checkbox, { checked: false })
+    cut.component.$on('change', evt => actualEvent = evt.detail)
+    // Act
+    await fireEvent.click(cut.getByRole("checkbox", {checked: false}))
+    // Assert
+    expect(actualEvent).toBe(true)
   })
 })
 
