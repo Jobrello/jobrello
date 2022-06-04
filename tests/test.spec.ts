@@ -89,4 +89,18 @@ describe('CustomizedOrder', () => {
       expect(text).toContain(name)
     })
   })
+
+  it('it fires change event with selections', async () => {
+    // Arrange + Act
+    let selections: string[] = []
+    const cut = render(CustomizedOrder, { options: customOptions })
+    cut.component.$on('change', (e: CustomEvent<string[]>) => {
+      selections = e.detail
+      console.log(e.detail)
+    })
+    await fireEvent.click(cut.getByRole("checkbox", { checked: false }))
+    fireEvent.input(cut.getAllByTestId('slider')[0], {target: {value : 2}})
+    // Assert
+    expect(selections.flat()).toEqual(['2 job boards', 'Head hunter'])
+  })
 })

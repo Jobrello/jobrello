@@ -2,10 +2,23 @@
     import {Option} from "./models"
     import Checkbox from "../Checkbox.svelte"
     import Range from "./Range.svelte"
+    import { createEventDispatcher } from "svelte"
 
     export let options: Option[]
-
+    const dispatch = createEventDispatcher()
     let selections: string[] = []
+
+    const dispatchChange = () => dispatch('change', selections)
+
+    const onRangeChange = (index: number, choice: string) => {
+        selections[index] = choice
+        dispatchChange()
+    }
+
+    const onCheckedChange = (index: number, isChecked: boolean, choice: string) => {
+        selections[index] = isChecked ? choice : ''
+        dispatchChange()
+    }
 </script>
 
 <style>
@@ -30,13 +43,17 @@
                 <Range 
                     min={0} 
                     max={choices.length-1}
-                    on:change={e => selections[index]=choices[e.detail]}
+                    on:change={e => onRangeChange(index, choices[e.detail])}
                     value={0}>
                 </Range>
             </div>
         {:else if typeof choices == "boolean"}
             <div style="margin-right:124px;width:100%">
-                <Checkbox bind:checked={choices}>{name}</Checkbox>
+                <Checkbox 
+                    checked={choices} 
+                    on:change={e => onCheckedChange(index, e.detail, name)}>
+                    {name}
+                </Checkbox>
             </div>
         {/if}
     </li>
