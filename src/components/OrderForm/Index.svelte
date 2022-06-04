@@ -4,13 +4,14 @@ import InformativeRange from "./InfromativeRange.svelte"
 import CustomizedOrder from "./CustomizedOrder.svelte"
 import Icon from "../Icon.svelte"
 import { Option } from "./models"
-
-let selections: string[] = []
+import Button from "../Button.svelte"
 
 const steps = [
 		'1 most popular job board in Poland, Facebook group, posters on Polish University of technology.'
 		, '2 most popular job boards in Poland, 2 Facebook groups, posters on 1 Polish University.'
 		, '3 most popular job boards in Poland, 2 Facebook groups, posters on 2 Polish Universities, Hunting on Linkedin.']
+
+let selections: string[] = [steps[0]]
 
 const customOptions: Option[] = [
 	['Job boards range', ['None', '1 job board', '2 job boards', '3 job boards']],
@@ -58,6 +59,10 @@ $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 		<CustomizedOrder options={customOptions} on:change={e => selections = e.detail}/>
 	{/if}
 </div>
-<Icon name="poland" style="width:100%; height:474px; opacity:{alpha}; transition: all .2s"></Icon>
-<button style="display:block; text-align: center; margin:auto;" on:click={() => console.log(selections)}>Coming soon</button>
+<div style="display:grid; place-items:center;">
+	<div style="grid-area: 1/1; z-index:1; margin-top:-10%">
+		<Button on:click={() => console.log(selections)}>Submit!</Button>
+	</div>
+	<Icon name="poland" style="width:100%; height:474px; opacity:{alpha}; transition: all .2s; grid-area: 1/1"></Icon>
+</div>
 
