@@ -1,4 +1,3 @@
-const Busboy = require('busboy');
 const multipart = require('parse-multipart-data');
 const sendGridClient = require('@sendgrid/mail');
 const {
@@ -7,7 +6,7 @@ const {
   SENDGRID_FROM_EMAIL,
 } = process.env;
 
-exports.handler = async function (event, context, callback) {
+exports.handler = async function (event) {
     const boundary = event.headers['content-type'].replace('multipart/form-data; boundary=', '');
     const body = Buffer.from(event.body, 'base64')
     const parts = multipart.parse(body,boundary);
