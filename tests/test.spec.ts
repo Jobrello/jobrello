@@ -96,7 +96,6 @@ describe('CustomizedOrder', () => {
     const cut = render(CustomizedOrder, { options: customOptions })
     cut.component.$on('change', (e: CustomEvent<string[]>) => {
       selections = e.detail
-      console.log(e.detail)
     })
     await fireEvent.click(cut.getByRole("checkbox", { checked: false }))
     fireEvent.input(cut.getAllByTestId('slider')[0], {target: {value : 2}})
