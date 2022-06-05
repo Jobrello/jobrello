@@ -54,9 +54,7 @@ button.animate {
 button.animate::after {
 	position: absolute;
     content: '';
-	/* todo */
     width: 25px;
-	/* todo */
     height: 25px;
     border: 4px solid white;
     border-radius: 50%;
@@ -72,15 +70,13 @@ button.animate::after {
 button.success:before{
       position: absolute;
       content: '';
-	  /* todo */
       width: 25px;
-	  /* todo */
       height: 15px;
       border: 4px solid white;
       border-right: 0;
       border-top: 0;
       left: 50%;
-      top: 50%;
+      top: 45%;
       transform: rotate(0deg) scale(0);
       animation: success ease-in 0.15s forwards;
     }
