@@ -5,6 +5,7 @@ import CustomizedOrder from "./CustomizedOrder.svelte"
 import Icon from "../Icon.svelte"
 import { Option } from "./models"
 import Button from "../Button.svelte"
+import { scale } from 'svelte/transition'
 
 const steps = [
 		'1 most popular job board in Poland, Facebook group, posters on Polish University of technology.'
@@ -53,10 +54,12 @@ $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 			</div>
 		</div>
 	{:else}
-		<div on:click={onCustomClick} style="cursor:pointer; color:var(--jobrella-accent-color); margin-top:-2rem;">
-			<small>←<u>back to classic mode</u></small>
+		<div in:scale>
+			<div on:click={onCustomClick} style="cursor:pointer; color:var(--jobrella-accent-color); margin-top:-2rem;">
+				<small>←<u>back to classic mode</u></small>
+			</div>
+			<CustomizedOrder options={customOptions} on:change={e => selections = e.detail}/>
 		</div>
-		<CustomizedOrder options={customOptions} on:change={e => selections = e.detail}/>
 	{/if}
 </div>
 <div style="display:grid; place-items:center;">
