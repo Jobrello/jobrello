@@ -63,7 +63,7 @@ $: price = selections
 	</Upload>
 </div>
 <div style="font-size: 1.5rem;max-width: 550px;margin:auto; text-align:center;">
-	<h2>Select Job Offer Range <span>{price} €</span></h2>
+	<h2>Select Job Offer Range <span style="color: var(--jobrella-accent-color)">{price} €</span></h2>
 	{#if !customMode}
 		<div style="display:flex; min-height:160px">
 			<div style="flex-basis:0; flex-grow: 10;">
