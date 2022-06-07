@@ -114,8 +114,8 @@ describe('CustomizedOrder', () => {
       selections = e.detail
     })
     await fireEvent.click(cut.getByRole("checkbox", { checked: false }))
-    fireEvent.input(cut.getAllByRole('slider')[0], {target: {value : 2}})
+    await fireEvent.input(cut.getAllByRole('slider')[0], {target: {value : 2}})
     // Assert
-    expect(selections.flat()).toEqual(['2 job boards', 'Head hunter'])
+    expect(selections.flat()).toEqual(['2 job boards', 20, 'Head hunter', 90])
   })
 })

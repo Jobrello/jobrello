@@ -39,7 +39,10 @@ export let customOptions: Option[] = [
 let currentStep = 0
 let customMode = false
 
-const onCustomClick = () => customMode = !customMode
+const onCustomClick = () => { 
+	customMode = !customMode 
+	selections = customMode ? [['', 0]] : [steps[0]]
+}
 const onRangeChange = (event: CustomEvent<number>) => {
 	currentStep = event.detail
 	selections = [steps[currentStep]]
