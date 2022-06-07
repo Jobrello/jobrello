@@ -2,13 +2,6 @@ import '@testing-library/jest-dom'
 // @ts-ignore
 import { parseMultipartForm, sendOrderPlacedEmail } from '../netlify/functions/sendOrderPlacedEmail'
 import '@testing-library/jest-dom'
-import OfferForm from '../src/components/OrderForm/Index.svelte'
-import { render, fireEvent } from '@testing-library/svelte'
-import { uploadedForm } from '../mocks/handlers'
-
-const testFile = new File(['(⌐□_□)'], 'chucknorris.png', {
-    type: 'image/png'
-  })
 
 describe('Place Order', () => {
     const headers = { 'content-type': 'multipart/form-data; boundary=--------------------------586199023953990026653312' }

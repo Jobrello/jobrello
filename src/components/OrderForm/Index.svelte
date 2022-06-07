@@ -3,33 +3,51 @@ import Upload from "./Upload.svelte"
 import InformativeRange from "./InfromativeRange.svelte"
 import CustomizedOrder from "./CustomizedOrder.svelte"
 import Icon from "../Icon.svelte"
-import { Option } from "./models"
+import { Option, OfferSelection } from "./models"
 import Button from "../Button.svelte"
 import { scale } from 'svelte/transition'
-const dev = process.env.NODE_ENV !== 'production';
+const dev = process.env.NODE_ENV !== 'production'
 
-export const server = dev ? 'http://localhost:3000' : 'https://your_deployment.server.com';
+import Email from './Email.svelte'
 
+export let steps: [string, number][]  = [
+		['1 most popular job board in Poland, Facebook group, posters on Polish University of technology.', 110]
+		, ['2 most popular job boards in Poland, 2 Facebook groups, posters on 1 Polish University.', 190]
+		, ['3 most popular job boards in Poland, 2 Facebook groups, posters on 2 Polish Universities, Hunting on Linkedin.', 345]
+	]
 
-const steps = [
-		'1 most popular job board in Poland, Facebook group, posters on Polish University of technology.'
-		, '2 most popular job boards in Poland, 2 Facebook groups, posters on 1 Polish University.'
-		, '3 most popular job boards in Poland, 2 Facebook groups, posters on 2 Polish Universities, Hunting on Linkedin.']
+let selections: OfferSelection[] = [steps[0]]
+let mail = ''
 
-let selections: string[] = [steps[0]]
-
-const customOptions: Option[] = [
-	['Job boards range', ['None', '1 job board', '2 job boards', '3 job boards']],
-	['Number of bumps in job boards', ['None', '1 bump', '2 bumps', '3 bumps']],
-	['Social media & forums', ['None', '1 facebook group', '2 facebook groups, 1 slack community']],
-	['Head hunter', false]
+export let customOptions: Option[] = [
+	['Job boards range', [
+		['None', 0]
+		, ['1 job board', 10]
+		, ['2 job boards', 20]
+		, ['3 job boards', 30]
+	]],
+	['Number of bumps in job boards', [
+		['None', 0]
+		, ['1 bump', 15]
+		, ['2 bumps', 25]
+		, ['3 bumps', 35]
+	]],
+	['Social media & forums', [
+		['None', 0]
+		, ['1 facebook group', 5]
+		, ['2 facebook groups, 1 slack community', 20]
+	]],
+	['Head hunter', false, 90]
 ]
 
 let currentStep = 0
 let customMode = false
 let file: File
 
-const onCustomClick = () => customMode = !customMode
+const onCustomClick = () => { 
+	customMode = !customMode 
+	selections = customMode ? [['', 0]] : [steps[0]]
+}
 const onRangeChange = (event: CustomEvent<number>) => {
 	currentStep = event.detail
 	selections = [steps[currentStep]]
@@ -55,6 +73,10 @@ const onSubmitClick = async () => {
 
 $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 
+$: price = selections
+			.map(selection => selection[1])
+			.reduce((prev, current) => prev + current)
+
 </script>
 
 <div style="font-size: 1.5rem;max-width: 450px;margin:auto;">
@@ -63,13 +85,15 @@ $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 		dropFileTitle = "Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
 		style = "max-width:450px;margin:auto">
 	</Upload>
+	<div style="margin-top: 1rem;"/>
+	<Email bind:mail={mail}/>
 </div>
 <div style="font-size: 1.5rem;max-width: 550px;margin:auto; text-align:center;">
-	<h2>Select Job Offer Range</h2>
+	<h2>Select Job Offer Range <span style="color: var(--jobrella-accent-color)">{price} €</span></h2>
 	{#if !customMode}
 		<div style="display:flex; min-height:160px">
 			<div style="flex-basis:0; flex-grow: 10;">
-			<InformativeRange on:change={onRangeChange} steps={steps}>
+			<InformativeRange on:change={onRangeChange} steps={steps.map(s=> s[0])}>
 				<div on:click={onCustomClick} style="display: flex; flex-direction:column; cursor: pointer;">
 					<Icon name="cog" style="width:50px; height:50px; fill:#393939"></Icon>
 					<small style="font-size: .9rem;"><u>customize</u></small>
@@ -86,7 +110,7 @@ $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 		</div>
 	{/if}
 </div>
-<div style="display:grid; place-items:center;">
+<div style="display:grid; place-items:center;margin-top:3rem;">
 	<div style="grid-area: 1/1; z-index:1; margin-top:-10%">
 		<Button on:click={onSubmitClick}>Submit!</Button>
 	</div>

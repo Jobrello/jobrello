@@ -51,7 +51,7 @@ describe('Informative range component', () => {
     ]
     const cut = render(InfromativeRange, { steps })
     // Act
-    fireEvent.input(cut.getByTestId('slider'), {target: {value : 2}})
+    fireEvent.input(cut.getByRole('slider'), {target: {value : 2}})
     // Assert
     expect(await cut.findByText(steps[2]))
   })
@@ -90,10 +90,26 @@ describe('Checkbox', () => {
 })
 
 describe('CustomizedOrder', () => {
-  const customOptions: Option[] = [
-    ['Job boards range', ['None', '1 job board', '2 job boards', '3 job boards']],
-    ['Social media & forums', ['None', '1 facebook group', '2 facebook groups, 1 slack community']],
-    ['Head hunter', false]
+
+  let customOptions: Option[] = [
+    ['Job boards range', [
+      ['None', 0]
+      , ['1 job board', 10]
+      , ['2 job boards', 20]
+      , ['3 job boards', 30]
+    ]],
+    ['Number of bumps in job boards', [
+      ['None', 0]
+      , ['1 bump', 15]
+      , ['2 bumps', 25]
+      , ['3 bumps', 35]
+    ]],
+    ['Social media & forums', [
+      ['None', 0]
+      , ['1 facebook group', 5]
+      , ['2 facebook groups, 1 slack community', 20]
+    ]],
+    ['Head hunter', false, 90]
   ]
 
   it('can set ranges and checkboxes in customization area', async () => {
@@ -114,8 +130,8 @@ describe('CustomizedOrder', () => {
       selections = e.detail
     })
     await fireEvent.click(cut.getByRole("checkbox", { checked: false }))
-    fireEvent.input(cut.getAllByTestId('slider')[0], {target: {value : 2}})
+    await fireEvent.input(cut.getAllByRole('slider')[0], {target: {value : 2}})
     // Assert
-    expect(selections.flat()).toEqual(['2 job boards', 'Head hunter'])
+    expect(selections.flat()).toEqual(['2 job boards', 20, 'Head hunter', 90])
   })
 })
