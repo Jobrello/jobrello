@@ -6,6 +6,10 @@ import Icon from "../Icon.svelte"
 import { Option } from "./models"
 import Button from "../Button.svelte"
 import { scale } from 'svelte/transition'
+const dev = process.env.NODE_ENV !== 'production';
+
+export const server = dev ? 'http://localhost:3000' : 'https://your_deployment.server.com';
+
 
 const steps = [
 		'1 most popular job board in Poland, Facebook group, posters on Polish University of technology.'
@@ -23,11 +27,30 @@ const customOptions: Option[] = [
 
 let currentStep = 0
 let customMode = false
+let file: File
 
 const onCustomClick = () => customMode = !customMode
 const onRangeChange = (event: CustomEvent<number>) => {
 	currentStep = event.detail
 	selections = [steps[currentStep]]
+}
+
+const onFileSelected = (event: CustomEvent<File>) =>{
+	file = event.detail
+}
+
+const onSubmitClick = async () => {
+	let url = dev ? 'http://localhost:5000/placeOrder' : '/placeOrder'
+	const formData  = new FormData();
+	formData.append('sender', 'TEST@SENDER.COM')
+	formData.append('tier', 'TEST-TIER')
+	formData.append('jobOffer', file)
+
+	const options = {
+  		method: 'POST',
+  		body: formData,
+	};
+	await fetch(url, options);
 }
 
 $: alpha = 1 / steps.length + 1 / steps.length * currentStep
@@ -36,6 +59,7 @@ $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 
 <div style="font-size: 1.5rem;max-width: 450px;margin:auto;">
 	<Upload 
+		on:file-selected={onFileSelected}
 		dropFileTitle = "Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
 		style = "max-width:450px;margin:auto">
 	</Upload>
@@ -64,7 +88,7 @@ $: alpha = 1 / steps.length + 1 / steps.length * currentStep
 </div>
 <div style="display:grid; place-items:center;">
 	<div style="grid-area: 1/1; z-index:1; margin-top:-10%">
-		<Button on:click={() => console.log(selections)}>Submit!</Button>
+		<Button on:click={onSubmitClick}>Submit!</Button>
 	</div>
 	<Icon name="poland" style="width:100%; height:474px; opacity:{alpha}; transition: all .2s; grid-area: 1/1"></Icon>
 </div>

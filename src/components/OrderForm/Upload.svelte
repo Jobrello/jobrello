@@ -1,6 +1,11 @@
 <script lang="ts">
+import { createEventDispatcher } from "svelte";
+
+
   export let dropFileTitle = "Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
   export let style = ""
+
+  const dispatch = createEventDispatcher()
 
   let isOver = false
   let fileInput: HTMLInputElement
@@ -20,6 +25,7 @@
   const onInputChanged = () => {
     const files = fileInput?.files
     files && (selectedFile = files[0])
+    dispatch('file-selected', selectedFile)
   }
 
   const onOver = (ev: DragEvent) => {

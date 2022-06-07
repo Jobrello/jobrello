@@ -25,6 +25,22 @@ describe('Upload component', () => {
   })
 })
 
+it(`When file is dropped, then file-selected event is triggered`, async () => {
+  const testFile = new File(['(⌐□_□)'], 'chucknorris.png', {
+    type: 'image/png'
+  })
+  const dropFileTitle = 'Drop job offer here'
+  const cut = render(Upload, {dropFileTitle})
+  const uploader = cut.getByTestId('file-uploader') as HTMLInputElement
+  let isFileSelectedEventTriggered = false
+  let onFileSelected = () => isFileSelectedEventTriggered = true
+  cut.component.$on('file-selected', onFileSelected)
+  // Act
+  await fireEvent.change(uploader, {target: {files: [testFile]}})
+  // Assert
+  expect(isFileSelectedEventTriggered).toBe(true)
+})
+
 describe('Informative range component', () => {
   it('When value is changed, the related information is being displayed', async () => {
     // Arrange
