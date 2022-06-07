@@ -6,6 +6,7 @@ import Icon from "../Icon.svelte"
 import { Option, OfferSelection } from "./models"
 import Button from "../Button.svelte"
 import { scale } from 'svelte/transition'
+import Email from './Email.svelte'
 
 export let steps: [string, number][]  = [
 		['1 most popular job board in Poland, Facebook group, posters on Polish University of technology.', 110]
@@ -14,6 +15,7 @@ export let steps: [string, number][]  = [
 	]
 
 let selections: OfferSelection[] = [steps[0]]
+let mail = ''
 
 export let customOptions: Option[] = [
 	['Job boards range', [
@@ -61,6 +63,8 @@ $: price = selections
 		dropFileTitle = "Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
 		style = "max-width:450px;margin:auto">
 	</Upload>
+	<div style="margin-top: 1rem;"/>
+	<Email bind:mail={mail}/>
 </div>
 <div style="font-size: 1.5rem;max-width: 550px;margin:auto; text-align:center;">
 	<h2>Select Job Offer Range <span style="color: var(--jobrella-accent-color)">{price} €</span></h2>
@@ -84,9 +88,9 @@ $: price = selections
 		</div>
 	{/if}
 </div>
-<div style="display:grid; place-items:center;">
+<div style="display:grid; place-items:center;margin-top:3rem;">
 	<div style="grid-area: 1/1; z-index:1; margin-top:-10%">
-		<Button on:click={() => console.log(selections)}>Submit!</Button>
+		<Button on:click={() => console.log(selections, mail)}>Submit!</Button>
 	</div>
 	<Icon name="poland" style="width:100%; height:474px; opacity:{alpha}; transition: all .2s; grid-area: 1/1"></Icon>
 </div>
