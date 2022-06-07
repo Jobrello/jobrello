@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Option} from "./models"
+    import {Option, RangeOption} from "./models"
     import Checkbox from "../Checkbox.svelte"
     import Range from "./Range.svelte"
     import { createEventDispatcher } from "svelte"
@@ -10,8 +10,8 @@
 
     const dispatchChange = () => dispatch('change', selections)
 
-    const onRangeChange = (index: number, choice: string) => {
-        selections[index] = choice
+    const onRangeChange = (index: number, choice: RangeOption) => {
+        selections[index] = choice[0]
         dispatchChange()
     }
 
@@ -35,7 +35,7 @@
             <div>
                 <div>{name}</div>
                 <div><small>{selections[index] == undefined 
-                                                ? choices[0] 
+                                                ? choices[0][0]
                                                 : selections[index]
                                                 }</small></div>
             </div>

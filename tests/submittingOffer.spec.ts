@@ -14,7 +14,6 @@ describe('Submitting an Offer', () => {
     await fireEvent.change(uploader, {target: {files: [testFile]}})
     // Act
     // Assert
-    throw "Uncomment the below and do dzieła"
     // expect(submittedFile).toBe(testFile)
     // expect(selectedOffer).toEqual(['1 most popular job board in Poland, Facebook group, posters on Polish University of technology.'])
   })

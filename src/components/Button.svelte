@@ -20,7 +20,6 @@
 </button>
 
 <style>
-
 button {
   display: inline-block;
   min-width: 200px;
@@ -53,33 +52,33 @@ button.animate {
 
 button.animate::after {
 	position: absolute;
-    content: '';
-    width: 25px;
-    height: 25px;
-    border: 4px solid white;
-    border-radius: 50%;
-    border-left-color: transparent;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    animation: spin 1.5s;
-    animation-name: spin;
+  content: '';
+  width: 25px;
+  height: 25px;
+  border: 4px solid white;
+  border-radius: 50%;
+  border-left-color: transparent;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1.5s;
+  animation-name: spin;
 	animation-iteration-count: infinite;
 }
 
 button.success:before{
-      position: absolute;
-      content: '';
-      width: 25px;
-      height: 15px;
-      border: 4px solid white;
-      border-right: 0;
-      border-top: 0;
-      left: 50%;
-      top: 45%;
-      transform: rotate(0deg) scale(0);
-      animation: success ease-in 0.15s forwards;
-    }
+  position: absolute;
+  content: '';
+  width: 25px;
+  height: 15px;
+  border: 4px solid white;
+  border-right: 0;
+  border-top: 0;
+  left: 50%;
+  top: 45%;
+  transform: rotate(0deg) scale(0);
+  animation: success ease-in 0.15s forwards;
+}
 
 button.success {
 	width: 50px; 
@@ -115,18 +114,17 @@ button.success {
 }
 
 @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1);}
-    90% { transform: translate(-50%, -50%) rotate(1080deg) scale(1); }
-    100% { transform: translate(-50%, -50%) scale(1); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1);}
+  90% { transform: translate(-50%, -50%) rotate(1080deg) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
  }
 
  @keyframes success{
-    from {
-       transform: translate(-50%, -50%) rotate(0) scale(0);
-       }
-    to {
-      transform: translate(-50%, -50%) rotate(-45deg) scale(1);
-    }
+  from {
+      transform: translate(-50%, -50%) rotate(0) scale(0);
+      }
+  to {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  }
 }
-    
 </style>
