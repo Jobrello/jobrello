@@ -59,7 +59,7 @@ const onSubmitClick = async () => {
 	let url = '/placeOrder'
 	const formData  = new FormData();
 	formData.append('sender', 'TEST@SENDER.COM')
-	formData.append('tier', 'TEST-TIER')
+	formData.append('inquiry', selections.flat().join(' | '))
 	formData.append('jobOffer', file)
 
 	const options = {
