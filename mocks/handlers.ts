@@ -1,4 +1,5 @@
 import { rest } from 'msw'
+import { inquiry } from './data'
 
 export let uploadedForm: any
 
@@ -9,10 +10,7 @@ export const handlers = [
   rest.post('/placeOrder', async (req, res, ctx) => {
     const body = req.body as FormData
     const entries = [...body.entries()]
-    const file = body.get('jobOffer') as File
-    console.log(file?.name)
-    console.log((file?.text()))
-    console.log(entries)
+    inquiry.data = entries.map(entry => [entry[0], entry[1].toString()])
     return res(ctx.status(200), ctx.json({message: 'Ok'}))
-  }),
+  })
 ]
