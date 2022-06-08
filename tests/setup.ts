@@ -1,5 +1,5 @@
 import { worker } from '../mocks/node-worker'
-import 'jest-fetch-mock'
+import 'whatwg-fetch'
 
 beforeAll(() => worker.listen())
 // Reset any request handlers that we may add during the tests, so they don't affect other tests.

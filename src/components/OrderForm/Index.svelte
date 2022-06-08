@@ -6,8 +6,6 @@ import Icon from "../Icon.svelte"
 import { Option, OfferSelection } from "./models"
 import Button from "../Button.svelte"
 import { scale } from 'svelte/transition'
-const dev = process.env.NODE_ENV !== 'production'
-
 import Email from './Email.svelte'
 
 export let steps: [string, number][]  = [
@@ -58,7 +56,7 @@ const onFileSelected = (event: CustomEvent<File>) =>{
 }
 
 const onSubmitClick = async () => {
-	let url = dev ? 'http://localhost:5000/placeOrder' : '/placeOrder'
+	let url = '/placeOrder'
 	const formData  = new FormData();
 	formData.append('sender', 'TEST@SENDER.COM')
 	formData.append('tier', 'TEST-TIER')

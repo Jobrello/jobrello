@@ -11,7 +11,8 @@ describe('Submitting an Offer', () => {
     // Arrange
     const cut = render(OfferForm)
     const uploader = cut.getByTestId('file-uploader') as HTMLInputElement
-    await fireEvent.change(uploader, {target: {files: [testFile]}})
+    await fireEvent.change(uploader, { target: { files: [testFile] } })
+    await fireEvent.click(cut.getByRole('button', {name: 'Submit!'}))
     // Act
     // Assert
     // expect(submittedFile).toBe(testFile)
