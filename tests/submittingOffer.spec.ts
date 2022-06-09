@@ -17,7 +17,7 @@ describe('Submitting an Offer', () => {
     const expectedInquiry =
       [
         ['sender', 'TEST@SENDER.COM']
-        , [ 'inquiry', 'I like fish and chips | 150' ]
+        , ['inquiry', 'I like fish and chips | 150' ]
         , ['jobOffer', '[object File]']
       ]
     const cut = render(OfferForm, {steps: steps})
