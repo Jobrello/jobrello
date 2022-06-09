@@ -56,7 +56,7 @@ const onFileSelected = (event: CustomEvent<File>) =>{
 }
 
 const onSubmitClick = async () => {
-	let url = '/placeOrder'
+	let url = '/.netlify/functions/placeOrder'
 	const formData  = new FormData();
 	formData.append('sender', 'TEST@SENDER.COM')
 	formData.append('inquiry', selections.flat().join(' | '))
