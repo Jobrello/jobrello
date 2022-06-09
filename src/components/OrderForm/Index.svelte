@@ -107,6 +107,7 @@ $: price = selections
 			<CustomizedOrder options={customOptions} on:change={e => selections = e.detail}/>
 		</div>
 	{/if}
+	<h4>(Coming Soon, nothing will happen when You click Submit. Come back in 15.06!)</h4>
 </div>
 <div style="display:grid; place-items:center;margin-top:3rem;">
 	<div style="grid-area: 1/1; z-index:1; margin-top:-10%">
