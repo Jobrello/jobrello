@@ -39,8 +39,7 @@ function mapAttachmentsToSendGridType(attachments) {
 function buildHtmlContent(fields) {
     return `<h1>New order</h1>
       <div>Contact email: ${fields['sender']}</div>
-      <div>Inquiry: ${fields['inquiry']}</div>
-      <div>Tier: ${fields['tier']}</div>`
+      <div>Inquiry: ${fields['inquiry']}</div>`
 }
 
 function buildEmailSubject(fields) {
