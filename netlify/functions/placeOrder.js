@@ -6,8 +6,6 @@ const {
     SENDGRID_FROM_EMAIL,
 } = process.env;
 
-console.log(SENDGRID_TO_EMAIL)
-
 exports.handler = async function (event) {
     sendGridClient.setApiKey(SENDGRID_API_KEY);
     let sendFunc = (data) => sendGridClient.send(data)
