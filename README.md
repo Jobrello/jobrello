@@ -1,9 +1,1 @@
-# Astro + Svelte Example
-
-```
-npm init astro -- --template framework-svelte
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/framework-svelte)
-
-This example showcases Astro working with [Svelte](https://svelte.dev/).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9fe7cc6a-3312-4a2f-9e56-95a17e15939b/deploy-status)](https://app.netlify.com/sites/spontaneous-frangollo-153268/deploys)
