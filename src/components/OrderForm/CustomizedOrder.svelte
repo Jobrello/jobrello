@@ -1,61 +1,68 @@
 <script lang="ts">
-    import {Option, RangeOption, OfferSelection} from "./models"
-    import Checkbox from "../Checkbox.svelte"
-    import Range from "./Range.svelte"
-    import { createEventDispatcher } from "svelte"
+  import {Options, SelectedOptions, RangeOption} from './models'
+  import Checkbox from '../Checkbox.svelte'
+  import Range from './Range.svelte'
+  import {createEventDispatcher} from 'svelte'
 
-    export let options: Option[]
-    const dispatch = createEventDispatcher()
-    let selections: OfferSelection[] = []
+  export let options: Options
+  const dispatch = createEventDispatcher()
+  const choices : Array<'JobBoards' | 'NumberOfBumps' | 'SocialMedias'>  = ['JobBoards', 'NumberOfBumps', 'SocialMedias']
+  let selections: SelectedOptions = {
+    JobBoards: options.JobBoards[1][0],
+    HeadHunter: false,
+    NumberOfBumps: options.NumberOfBumps[1][0],
+    SocialMedias: options.SocialMedias[1][0]
+  }
 
-    const dispatchChange = () => dispatch('change', selections)
+  const dispatchChange = () => dispatch('change', selections)
 
-    const onRangeChange = (index: number, choice: RangeOption) => {
-        selections[index] = choice
-        dispatchChange()
-    }
+  const onRangeChange = (
+    index: 'JobBoards' | 'NumberOfBumps' | 'SocialMedias',
+    choice: RangeOption
+  ) => {
+    selections[index] = choice
+    dispatchChange()
+  }
 
-    const onCheckedChange = (index: number, isChecked: boolean, name:string, cost: undefined | number) => {
-        selections[index] = isChecked ? [name, cost as number] : ['', 0]
-        dispatchChange()
-    }
+  const onCheckedChange = (isChecked: boolean) => {
+    selections.HeadHunter = isChecked
+    dispatchChange()
+  }
 </script>
 
-<style>
-    .range {
-        min-width: 150px;
-        max-width: 150px;
-    }
-</style>
-
 <ul style="text-align: left; padding-left:0;">
-    {#each options as [name, choices, checkOptionCost], index} 
+  {#each choices as name}
     <li style="display: flex; justify-content: space-between; padding: .5rem;">
-        {#if Array.isArray(choices)}
-            <div>
-                <div>{name}</div>
-                <div><small>{selections[index] == undefined 
-                                                ? choices[0][0]
-                                                : selections[index][0]
-                                                }</small></div>
-            </div>
-            <div class="range" style="margin-top: .5rem">
-                <Range 
-                    min={0} 
-                    max={choices.length-1}
-                    on:change={e => onRangeChange(index, choices[e.detail])}
-                    value={0}>
-                </Range>
-            </div>
-        {:else if typeof choices == "boolean"}
-            <div style="margin-right:124px;width:100%">
-                <Checkbox 
-                    checked={choices} 
-                    on:change={e => onCheckedChange(index, e.detail, name, checkOptionCost)}>
-                    {name}
-                </Checkbox>
-            </div>
-        {/if}
+      <div>
+        <div>{options[name][0]}</div>
+        <div>
+          <small
+            >{selections[name] == undefined
+              ? options[name][0][0]
+              : selections[name][0]}</small>
+        </div>
+      </div>
+      <div class="range" style="margin-top: .5rem">
+        <Range
+          min={0}
+          max={options[name][1].length - 1}
+          on:change={(e) => onRangeChange(name, options[name][1][e.detail])}
+          value={0} />
+      </div>
     </li>
-    {/each}
+  {/each}
+  <li style="display: flex; justify-content: space-between; padding: .5rem;">
+    <div style="margin-right:124px;width:100%">
+      <Checkbox on:change={(e) => onCheckedChange(e.detail)}>
+        {options.HeadHunter[0]}
+      </Checkbox>
+    </div>
+  </li>
 </ul>
+
+<style>
+  .range {
+    min-width: 150px;
+    max-width: 150px;
+  }
+</style>

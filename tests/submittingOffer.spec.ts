@@ -2,6 +2,7 @@ import '@testing-library/jest-dom'
 import OfferForm from '../src/components/OrderForm/Index.svelte'
 import { render, fireEvent } from '@testing-library/svelte'
 import { inquiry } from '../mocks/data'
+import { Options } from '../src/components/OrderForm/models'
 
 const testFile = new File(['(⌐□_□)'], 'chucknorris.png', {
     type: 'image/png'
@@ -17,7 +18,7 @@ describe('Submitting an Offer', () => {
     const expectedInquiry =
       [
         ['sender', 'TEST@SENDER.COM']
-        , ['inquiry', 'I like fish and chips | 150' ]
+        , ['inquiry', `custom: false; step: 0; boards: None; bumps: 1 bump; socials: None; headHunter: false; price: ${steps[0][1]} €` ]
         , ['jobOffer', '[object File]']
       ]
     const cut = render(OfferForm, {steps: steps})
@@ -26,27 +27,43 @@ describe('Submitting an Offer', () => {
     // Act
     await fireEvent.click(cut.getByRole('button', {name: 'Submit!'}))
     // Assert
-    expect(inquiry.data).toStrictEqual(expectedInquiry)
+    expect(inquiry.data).toEqual(expectedInquiry)
   })
 
   it('sends sender, job offer and inquiry from customized plan', async () => {
-    let customOptions = [
-      ['Job boards 1', [
-        ['None', 0]
-        , ['1a job board', 10]
-        , ['2a job boards', 20]
-      ]],
-      ['Job boards 2', [
-        ['None', 0]
-        , ['1b job board', 15]
-        , ['2b job boards', 25]
-      ]]
-    ]
+    let customOptions: Options = {
+      JobBoards: [
+        'Job boards range',
+        [
+          ['None', 0],
+          ['1 job board', 194],
+          ['2 job boards', 392],
+          ['3 job boards', 580]
+        ]
+      ],
+      NumberOfBumps: [
+        'Number of bumps in job boards',
+        [
+          ['1 bump', 1],
+          ['2 bumps', 1.33],
+          ['3 bumps', 1.74]
+        ]
+      ],
+      SocialMedias: [
+        'Social media & forums',
+        [
+          ['None', 0],
+          ['1 facebook group', 5],
+          ['2 facebook groups, 1 slack community', 20]
+        ]
+      ],
+      HeadHunter: ['Head hunter']
+    }
     // Arrange
     const expectedInquiry =
       [
         ['sender', 'TEST@SENDER.COM']
-        , [ 'inquiry', '1a job board | 10 | 1b job board | 15' ]
+        , [ 'inquiry', `custom: true; step: 0; boards: 1 job board; bumps: 2 bumps; socials: None; headHunter: false; price: ${Math.ceil(194*1.33)} €` ]
         , ['jobOffer', '[object File]']
       ]
     const cut = render(OfferForm, {customOptions: customOptions})

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import Upload from '../src/components/OrderForm/Upload.svelte'
-import { Option } from '../src/components/OrderForm/models'
+import { Options, SelectedOptions } from '../src/components/OrderForm/models'
 import InfromativeRange from '../src/components/OrderForm/InfromativeRange.svelte'
 import OfferForm from '../src/components/OrderForm/Index.svelte'
 import Checkbox from '../src/components/Checkbox.svelte'
@@ -91,47 +91,58 @@ describe('Checkbox', () => {
 
 describe('CustomizedOrder', () => {
 
-  let customOptions: Option[] = [
-    ['Job boards range', [
-      ['None', 0]
-      , ['1 job board', 10]
-      , ['2 job boards', 20]
-      , ['3 job boards', 30]
-    ]],
-    ['Number of bumps in job boards', [
-      ['None', 0]
-      , ['1 bump', 15]
-      , ['2 bumps', 25]
-      , ['3 bumps', 35]
-    ]],
-    ['Social media & forums', [
-      ['None', 0]
-      , ['1 facebook group', 5]
-      , ['2 facebook groups, 1 slack community', 20]
-    ]],
-    ['Head hunter', false, 90]
-  ]
+  let customOptions: Options = {
+    JobBoards: [
+      'Job boards range',
+      [
+        ['None', 0],
+        ['1 job board', 194],
+        ['2 job boards', 392],
+        ['3 job boards', 580]
+      ]
+    ],
+    NumberOfBumps: [
+      'Number of bumps in job boards',
+      [
+        ['1 bump', 1],
+        ['2 bumps', 1.33],
+        ['3 bumps', 1.74]
+      ]
+    ],
+    SocialMedias: [
+      'Social media & forums',
+      [
+        ['None', 0],
+        ['1 facebook group', 5],
+        ['2 facebook groups, 1 slack community', 20]
+      ]
+    ],
+    HeadHunter: ['Head hunter']
+  }
 
   it('can set ranges and checkboxes in customization area', async () => {
     // Arrange + Act
     const cut = render(CustomizedOrder, { options: customOptions })
     // Assert
     const text = cut.container.textContent
-    customOptions.forEach(([name, _]) => {
-      expect(text).toContain(name)
-    })
+    expect(text).toContain(customOptions.HeadHunter[0])
+    expect(text).toContain(customOptions.JobBoards[0])
+    expect(text).toContain(customOptions.NumberOfBumps[0])
+    expect(text).toContain(customOptions.SocialMedias[0])
   })
 
   it('it fires change event with selections', async () => {
     // Arrange + Act
-    let selections: string[] = []
+    let selections: SelectedOptions = undefined as unknown as SelectedOptions
     const cut = render(CustomizedOrder, { options: customOptions })
-    cut.component.$on('change', (e: CustomEvent<string[]>) => {
+    cut.component.$on('change', (e: CustomEvent<SelectedOptions>) => {
       selections = e.detail
     })
     await fireEvent.click(cut.getByRole("checkbox", { checked: false }))
     await fireEvent.input(cut.getAllByRole('slider')[0], {target: {value : 2}})
     // Assert
-    expect(selections.flat()).toEqual(['2 job boards', 20, 'Head hunter', 90])
+    expect(selections.HeadHunter).toEqual(true)
+    expect(selections.JobBoards[0]).toEqual(customOptions.JobBoards[1][2][0])
+    expect(selections.JobBoards[1]).toEqual(customOptions.JobBoards[1][2][1])
   })
 })
