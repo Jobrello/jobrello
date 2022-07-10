@@ -170,7 +170,7 @@
   {/if}
   <h4>
     (Coming Soon, nothing will happen when You click Submit. Come back in
-    15.06!)
+    12.07!)
   </h4>
 </div>
 <div style="display:grid; place-items:center;margin-top:3rem;">
