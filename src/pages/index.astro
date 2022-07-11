@@ -1,7 +1,8 @@
 ---
-	// Component Imports
-	import { Icon } from 'astro-icon'
-	import OrderForm from '../components/OrderForm/Index.svelte'
+// Component Imports
+import { Icon } from 'astro-icon'
+import OrderForm from '../components/OrderForm/Index.svelte'
+import HowItWorks from '../components/HowItWorks.svelte'
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -22,6 +23,7 @@
 
 		:root {
 			--jobrella-accent-color: #800000;
+			--jobrella-background-color: #ececec;
 		}
 
 		html,
@@ -31,7 +33,7 @@
 		}
 
 		body {
-			background-color: #ececec;
+			background-color: var(--jobrella-background-color);
 		}
 
 		main {
@@ -67,28 +69,19 @@
 	<main>
 		<div style="display:grid; place-items:center;">
 			<div style="grid-area: 1/1; z-index:1; margin-top:15%; margin-left:10%">
-				<!-- <Button>Just do it!</Button> -->
+				<!-- <con>Just do it!</Button> -->
 			</div>
 			<Icon name="jobrella" style="width:100%; max-height:90vh; grid-area: 1/1" />
 		</div>
 		<div style="text-align: center;">
 			<span style="font-size: 2.2rem; margin-top:4rem; text-align: left; display:inline-block;">
-				<h1>HOW IT WORKS<span style="color:var(--jobrella-accent-color);"> ?</span></h1>
-				<p style="font-size: 0.8em">We know how and where software engineers look for jobs.</p>
-				<ol>
-					<li>Write Job Description - pdf/odt/docx is perfect</li>
-					<li>Pick Employment Country (for now we support Poland)*</li>
-					<li>Choose the range that you are satisfied with</li>
-					<li>We post your job offer to different places within 24h</li>
-					<li>We let You know it is done</li>
-					<li>Wait for CVs from candidates</li>
-				</ol>
-				<p style="font-size: 0.8em">*We are buidling connections to provide trustworthy services
-					in<br />Netherlands, Great Britain, Czech Republic, and more to come.</p>
+				<HowItWorks>
+				</HowItWorks>
 			</span>
 		</div>
-		<h2 style="text-align: center; font-size:2.5rem">Let's do it<span style="color:var(--jobrella-accent-color);"> !</span></h2>
-		<OrderForm client:load/>
+		<h2 style="text-align: center; font-size:2.5rem">Let's do it<span style="color:var(--jobrella-accent-color);">
+				!</span></h2>
+		<OrderForm client:load />
 	</main>
 	<footer>
 		<div>
@@ -96,22 +89,17 @@
 		</div>
 		<div class="footer-column">
 			<div>Contact: </div>
-			<div>+48 123 433</div>
+			<div>+48 726 746 750</div>
 			<div>jobrella@jobrella.pl</div>
 		</div>
 		<div class="footer-column">
 			<div>Read: </div>
 			<div>
-				<a title="Terms & Conditions" 
-				   target="_blank" 
-				   href="/terms.pdf" 
-				   rel="noopener noreferrer">Terms & Conditions</a>
+				<a title="Terms & Conditions" target="_blank" href="/terms.pdf" rel="noopener noreferrer">Terms &
+					Conditions</a>
 			</div>
 			<div>
-				<a title="Privacy Notice" 
-				   target="_blank" 
-				   href="/privacy.pdf" 
-				   rel="noopener noreferrer">Privacy Notice
+				<a title="Privacy Notice" target="_blank" href="/privacy.pdf" rel="noopener noreferrer">Privacy Notice
 				</a>
 			</div>
 		</div>

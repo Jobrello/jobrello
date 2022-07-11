@@ -25,7 +25,7 @@ button {
   min-width: 200px;
   transform: rotate(-5deg);
   margin: 20px auto;
-  background: var(--jobrella-accent-color);;
+  background: var(--jobrella-accent-color);
   color: white;
   font-size: 1.2em;
   padding: 1em;
