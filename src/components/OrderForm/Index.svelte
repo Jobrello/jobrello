@@ -168,10 +168,6 @@
         }} />
     </div>
   {/if}
-  <h4>
-    (Coming Soon, nothing will happen when You click Submit. Come back in
-    12.07!)
-  </h4>
 </div>
 <div style="display:grid; place-items:center;margin-top:3rem;">
   <div style="grid-area: 1/1; z-index:1; margin-top:-10%">
