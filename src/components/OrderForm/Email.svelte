@@ -24,4 +24,4 @@
     }
 </style>
 
-<input type="email" {required} placeholder="Enter your mail for the invoice" bind:value={mail}/>
+<input type="email" {required} placeholder="Enter your mail for the invoice*" bind:value={mail}/>
