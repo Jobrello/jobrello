@@ -2,6 +2,8 @@
 	type State = undefined | 'static' | 'animate' | 'success'
 
 	export let state: State = undefined
+  export let disabled = false
+  export let onFinish: () => void = () => {}
 
 	const onClick = () => {
 		if(state && state != 'static') return
@@ -11,11 +13,12 @@
 		}, 1500)
 		setTimeout(() => {
 			state = 'static'
+      onFinish()
 		}, 2500)
 	}
 </script>
 
-<button class={state} on:click={onClick} on:click>
+<button {disabled} type="submit" class={state} on:click={onClick} on:click>
     <slot></slot>
 </button>
 
@@ -28,6 +31,7 @@ button {
   background: var(--jobrella-accent-color);
   color: white;
   font-size: 1.2em;
+  transition: background-color .5s;
   padding: 1em;
   text-align: center;
   position: relative;
@@ -35,6 +39,10 @@ button {
   box-shadow: 3px 3px grey;
   appearance: none;
   border: 0;
+}
+
+button:disabled {
+  background-color: darkgray;
 }
 
 button.static {

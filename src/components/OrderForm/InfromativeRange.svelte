@@ -2,7 +2,7 @@
     import Range from "./Range.svelte"
     
     export let steps: string[]
-    let currentStep = 0
+    export let currentStep = 0
 </script>
 
 <Range 
