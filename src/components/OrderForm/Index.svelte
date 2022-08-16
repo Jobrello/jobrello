@@ -8,9 +8,11 @@
   import {scale} from 'svelte/transition'
   import Email from './Email.svelte'
 
+  export const isEmailValid = (val:string): boolean => /^[a-z0-9][a-z0-9-_\.]+@([a-z]|[a-z0-9]?[a-z0-9-]+[a-z0-9])\.[a-z0-9]{2,10}(?:\.[a-z]{2,10})?$/.test(val)
+
   export let steps: [string, number][] = [
     [
-      '1 most popular job board in Poland, 1 bump, 1 Facebook group, posters on Polish University of technology.',
+      '1 most popular job board in Poland, 1 bump, 1 Facebook group, posters on Polish University of technology for junior offers..',
       200
     ],
     [
@@ -87,7 +89,7 @@
   const onSubmitClick = async () => {
     let url = '/.netlify/functions/placeOrder'
     const formData = new FormData()
-    formData.append('sender', 'TEST@SENDER.COM')
+    formData.append('sender', mail)
     formData.append(
       'inquiry',
       `custom: ${customMode}; step: ${currentStep}; boards: ${selections.JobBoards[0]}; bumps: ${selections.NumberOfBumps[0]}; socials: ${selections.SocialMedias[0]}; headHunter: ${selections.HeadHunter}; price: ${price}`
@@ -124,56 +126,57 @@
 
   computePrice()
 </script>
-
-<div style="font-size: 1.5rem;max-width: 450px;margin:auto;">
-  <Upload
-    on:file-selected={onFileSelected}
-    dropFileTitle="Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
-    style="max-width:450px;margin:auto" />
-  <div style="margin-top: 1rem;" />
-  <Email bind:mail />
-</div>
-<div style="font-size: 1.5rem;max-width: 550px;margin:auto; text-align:center;">
-  <h2>
-    Select Job Offer Range: <span style="color: var(--jobrella-accent-color)"
-      >{price}</span>
-  </h2>
-  {#if !customMode}
-    <div style="display:flex; min-height:160px">
-      <div style="flex-basis:0; flex-grow: 10;">
-        <InformativeRange
-          on:change={onRangeChange}
-          steps={steps.map((s) => s[0])}>
-          <div
-            on:click={onCustomClick}
-            style="display: flex; flex-direction:column; cursor: pointer;">
-            <Icon name="cog" style="width:50px; height:50px; fill:#393939" />
-            <small style="font-size: .9rem;"><u>customize</u></small>
-          </div>
-        </InformativeRange>
-      </div>
-    </div>
-  {:else}
-    <div in:scale>
-      <div
-        on:click={onCustomClick}
-        style="cursor:pointer; color:var(--jobrella-accent-color); margin-top:-2rem;">
-        <small>←<u>back to classic mode</u></small>
-      </div>
-      <CustomizedOrder
-        options={customOptions}
-        on:change={(e) => {
-          selections = e.detail
-          computePrice()
-        }} />
-    </div>
-  {/if}
-</div>
-<div style="display:grid; place-items:center;margin-top:3rem;">
-  <div style="grid-area: 1/1; z-index:1; margin-top:-10%">
-    <Button on:click={onSubmitClick}>Submit!</Button>
+<form on:submit|preventDefault={onSubmitClick}>
+  <div style="font-size: 1.5rem;max-width: 450px;margin:auto;">
+    <Upload
+      on:file-selected={onFileSelected}
+      dropFileTitle="Drop job offer (*.pdf, *.docx, *.odt, *.md) or click to browse for a file."
+      style="max-width:450px;margin:auto" />
+    <div style="margin-top: 1rem;" />
+    <Email required bind:mail />
   </div>
-  <Icon
-    name="poland"
-    style="width:100%; height:474px; opacity:{alpha}; transition: all .2s; grid-area: 1/1" />
-</div>
+  <div style="font-size: 1.5rem;max-width: 550px;margin:auto; text-align:center;">
+    <h2>
+      Select Job Offer Range: <span style="color: var(--jobrella-accent-color)"
+        >{price}</span>
+    </h2>
+    {#if !customMode}
+      <div style="display:flex; min-height:160px">
+        <div style="flex-basis:0; flex-grow: 10;">
+          <InformativeRange
+            on:change={onRangeChange}
+            steps={steps.map((s) => s[0])}>
+            <div
+              on:click={onCustomClick}
+              style="display: flex; flex-direction:column; cursor: pointer;">
+              <Icon name="cog" style="width:50px; height:50px; fill:#393939" />
+              <small style="font-size: .9rem;"><u>customize</u></small>
+            </div>
+          </InformativeRange>
+        </div>
+      </div>
+    {:else}
+      <div in:scale>
+        <div
+          on:click={onCustomClick}
+          style="cursor:pointer; color:var(--jobrella-accent-color); margin-top:-2rem;">
+          <small>←<u>back to classic mode</u></small>
+        </div>
+        <CustomizedOrder
+          options={customOptions}
+          on:change={(e) => {
+            selections = e.detail
+            computePrice()
+          }} />
+      </div>
+    {/if}
+  </div>
+  <div style="display:grid; place-items:center;margin-top:3rem;">
+    <div style="grid-area: 1/1; z-index:1; margin-top:-10%">
+      <Button onFinish={() => {window.location.reload()}} disabled={!isEmailValid(mail)}>Submit!</Button>
+    </div>
+    <Icon
+      name="poland"
+      style="width:100%; height:474px; opacity:{alpha}; transition: all .2s; grid-area: 1/1" />
+  </div>
+</form>

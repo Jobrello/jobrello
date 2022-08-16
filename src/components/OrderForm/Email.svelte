@@ -1,5 +1,6 @@
 <script lang="ts">
     export let mail:string
+    export let required: boolean
 </script>
 <style>
     input {
@@ -23,4 +24,4 @@
     }
 </style>
 
-<input type="email" placeholder="Enter your mail for the invoice" bind:value={mail}/>
+<input type="email" {required} placeholder="Enter your mail for the invoice" bind:value={mail}/>
